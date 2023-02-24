@@ -1,0 +1,58 @@
+@import '../../../../assets/scss/fonts';
+@import '../../../../assets/scss/colors';
+
+.selectionContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+        font-family: 'CamptonMedium', sans-serif;
+        font-size: 42px;
+        margin-bottom: 50px;
+    }
+
+    .selectionImg{
+        border-radius: 50%;
+        animation:ballRotation 7s linear infinite;
+        margin:0 20px;
+        transition: 0.3s;
+        box-shadow: 0 0px 40px rgba(12, 207, 246, 0.427);
+        &:hover{
+            cursor: pointer;
+         
+            box-shadow: 0 0px 45px rgba(12, 207, 246, 0.829);
+            animation-play-state: paused;
+        }
+    }
+}
+
+@keyframes ballRotation {
+    0%{
+        transform: rotate(0deg)
+    }
+    100%{
+        transform:rotate(360deg)
+    }
+}
+
+@keyframes ballRotationSlowed {
+    0%{
+        transform: rotate(0deg)
+    }
+    100%{
+        transform:rotate(360deg)
+    }
+}
+
+// @keyframes flash {
+//     0%{
+//         box-shadow: 0px 0px 3px rgba(45, 220, 255, 0.782);
+//     }
+  
+//     50%{
+//         box-shadow: 0px 0px 30px rgba(45, 220, 255, 0.856);
+//     }
+//     100%{
+//         box-shadow: 0px 0px 3px rgba(45, 220, 255, 0.782);
+//     }
+// }
