@@ -1,11 +1,15 @@
 import React from 'react'
 import Football from '../../../../assets/img/football.png'
 import Basketball from '../../../../assets/img/basketball.png'
+
 import './Selection.scss';
 
-const Selection = ({incrementStep, pickBall}) => {
+const Selection = ({handleNext, pickBall}) => {
+
+  const ANIMATION_DURATION = 0.3;
+
   return (
-    <div className='selectionContainer'>
+    <>
         <h1>Odaberite znak</h1>
         <div className="balls">
           <img
@@ -14,7 +18,7 @@ const Selection = ({incrementStep, pickBall}) => {
             alt="football"
             onClick={() => {
               pickBall('football');
-              incrementStep();
+              handleNext();
             }}
             className='selectionImg'
           />
@@ -24,13 +28,14 @@ const Selection = ({incrementStep, pickBall}) => {
             alt="basketball"
             onClick={() => {
               pickBall('basketball');
-              incrementStep();
+              handleNext();
             }}
             className='selectionImg'
           />
          
         </div>
-    </div>
+    </>
+    
   )
 }
 

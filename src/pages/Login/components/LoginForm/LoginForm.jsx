@@ -1,11 +1,11 @@
 import React from 'react'
-import ArenaLogo from '../../../../assets/img/ArenaCloudLogo.svg'
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import "yup-phone-lite";
+import './LoginForm.scss';
 
-const LoginForm = ({incrementStep}) => {
+const LoginForm = ({handleNext}) => {
 
     const schema = yup.object().shape({
         name: yup.string().required('Ime je neophodno'),
@@ -30,12 +30,12 @@ const LoginForm = ({incrementStep}) => {
     
       const saveDataAndNavigate = (userData) => {
         console.log(userData)
-        incrementStep();
+        handleNext();
       }
 
   return (
-    <div className="loginForm">
-            {/* <img
+    <>
+           {/* <img
               className='logo'
               src={ArenaLogo}
               style={{ width: 170 }}
@@ -79,11 +79,11 @@ const LoginForm = ({incrementStep}) => {
                 {...register('termsOfService')}
                 required  
               />
-              <label htmlFor="termsOfService">Slažem se sa <a href='www.google.com'>uslovima korišćenja</a> i punoljetan sam.</label>
+              <label htmlFor="termsOfService">Slažem se sa <a>uslovima korišćenja</a> i punoljetan sam.</label>
             </div>
             {errors.termsOfService && <h5 className='errorMessage'>{errors.termsOfService.message}</h5>}
-            <button onClick={incrementStep} className='startButton'>Start</button>
-        </div>
+            <button onClick={handleNext} className='startButton'>Start</button>
+    </>
   )
 }
 

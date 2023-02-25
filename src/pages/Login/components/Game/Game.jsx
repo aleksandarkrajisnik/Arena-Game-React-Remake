@@ -4,6 +4,7 @@ import Button from "./components/Button";
 import Square from "./components/Square";
 import './Game.scss'
 import ArenaLogo from '../../../../assets/img/ArenaCloudLogo.svg'
+
 const Game = ({incrementStep, userBall}) => {
 
     const [squares, setSquares] = useState(Array(9).fill(""));
@@ -142,9 +143,7 @@ const Game = ({incrementStep, userBall}) => {
                                     },
                                 }}
                             >
-                                {winner === "x | o" || winner === 'o' ? "Niste uspeli da pobedite racunar 😢." : 'Čestitamo 😁! Osvojili ste nagradu!'}
-                               
-                                
+                                {winner === "x | o" || winner === 'o' ? "Niste uspeli da pobedite računar 😢." : 'Čestitamo 😁! Osvojili ste nagradu!'}
                             </motion.h2>
                             <motion.div
                                 initial={{ scale: 0 }}

@@ -5,13 +5,18 @@ import LoginForm from './components/LoginForm/LoginForm';
 import Selection from './components/Selection/Selection';
 import ArenaLogo from '../../assets/img/ArenaCloudLogo.svg'
 import Game from './components/Game/Game';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Login = () => {
 
-  const [stepCount, setStepCount] = useState(1);
+  
   const [userBall, setUserBall] = useState(null);
 
-  const incrementStep = () => setStepCount(prevCount => prevCount + 1);
+  const [showForm, setShowForm] = useState(true);
+  const [showSelection, setShowSelection] = useState(false);
+  const [showGame, setShowGame] = useState(false);
+
+  const ANIMATION_DURATION = 0.3;
 
   return (
     <div className='loginContainer'>
@@ -28,9 +33,42 @@ const Login = () => {
                 alt="website logo"
               />
             </div>
-            {stepCount === 1 && <LoginForm incrementStep={incrementStep} />}
-            {stepCount === 2 && <Selection incrementStep={incrementStep} pickBall={(e) => {setUserBall(e)}} />}
-            {stepCount === 3 && <Game incrementStep={incrementStep} userBall={userBall} />}
+            <AnimatePresence>
+              {showForm && 
+                <motion.div
+                  className='loginForm'
+                  key={"loginForm"}
+                  initial={{ opacity: 0, }}
+                  animate={{ opacity: 1, transition: { duration: ANIMATION_DURATION } }}
+                  exit={{ opacity: 0 }}>
+                    <LoginForm 
+                      handleNext={() => {
+                        setShowForm(false);
+                        setTimeout(() => {setShowSelection(true)}, ANIMATION_DURATION * 1000)
+                      }} 
+                    />
+                </motion.div>
+              }
+              {showSelection && 
+                <motion.div 
+                  className='selectionContainer'
+                  key={"selectionContainer"}
+                  initial={{ opacity: 0, }}
+                  animate={{ opacity: 1, transition: { duration: ANIMATION_DURATION } }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Selection 
+                    handleNext={() => {
+                    setShowSelection(false);
+                    setTimeout(() => {setShowGame(true)}, 500)
+                  }}  
+                    pickBall={(e) => {setUserBall(e)}} 
+                  />
+                </motion.div>
+              }
+              {showGame && <Game incrementStep={console.log(1)} userBall={userBall} />}
+            </AnimatePresence>
+            
         </div>
     </div>
   )

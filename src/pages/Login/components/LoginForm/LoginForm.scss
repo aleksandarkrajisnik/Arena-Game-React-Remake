@@ -1,0 +1,85 @@
+@import '../../../../assets/scss/colors';
+
+.loginForm{
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    height:fit-content;
+
+    label{
+        margin-top: 15px;
+        font-family: 'CamptonBold', sans-serif;
+    }
+
+    .arenaInput{
+        height: 45px;
+        width: 262px;
+        background-color: rgba(255, 0, 0, 0);
+        border:1px solid $arenaLightBlue;
+        border-radius: 50px;
+        margin:10px 0;
+        padding:4px 15px;
+        font-size: 16px;
+        text-align: center;
+        &:focus{
+            outline: none;
+        }
+        
+    }
+
+    .checkboxContainer{
+        margin-top: 25px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        .checkbox{
+           margin-right: 10px;
+           width: 15px;
+           height: 15px;
+           border:none !important;
+           outline:none !important;
+           
+           &:focus{
+            background-color: $arenaLightBlue;
+           }
+        }
+
+        label{
+            margin:0;
+
+            a{
+                color:$arenaLightBlue;
+                transition:0.2s;
+                &:hover{
+                    color:$arenaBlue;
+                }
+            }
+        }
+    }
+
+    .startButton{
+        background-color: $arenaBlue;
+        border: none;
+        margin-top: 25px;
+        padding: 10px 25px;
+        font-size: 16px;
+        border-radius: 25px;
+        font-family: 'CamptonBold', sans-serif;
+        //text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.349);
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover{
+            background-color: $arenaDarkBlue;
+        }
+    }
+
+    .errorMessage{
+        font-family: 'CamptonMedium', sans-serif;
+        color: $arenaRed;
+    }
+}
