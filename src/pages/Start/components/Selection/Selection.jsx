@@ -14,7 +14,6 @@ const Selection = ({handleNext, pickBall}) => {
         <div className="balls">
           <img
             src={Football}
-            style={{ width: 180 }}
             alt="football"
             onClick={() => {
               pickBall('football');
@@ -24,7 +23,6 @@ const Selection = ({handleNext, pickBall}) => {
           />
           <img
             src={Basketball}
-            style={{ width: 180 }}
             alt="basketball"
             onClick={() => {
               pickBall('basketball');

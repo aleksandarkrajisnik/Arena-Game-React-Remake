@@ -1,13 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
-import Login from "./pages/Login/Login";
-import { Routes, Route } from 'react-router';
+import Start from "./pages/Start/Start";
 
 const App = () => {
 
   return (
-    <Routes>
-      <Route path='/' element={<Login/>}/>
-    </Routes>
+    <Start/>
   )
 }
 

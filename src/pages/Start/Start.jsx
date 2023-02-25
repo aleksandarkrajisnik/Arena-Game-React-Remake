@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.scss';
+import './Start.scss';
 import backgroundVideo from '../../assets/img/videoBackground.mp4';
 import LoginForm from './components/LoginForm/LoginForm';
 import Selection from './components/Selection/Selection';
@@ -19,7 +19,7 @@ const Login = () => {
   const ANIMATION_DURATION = 0.3;
 
   return (
-    <div className='loginContainer'>
+    <div className='appContainer'>
         <video muted autoPlay loop id='backgroundVideo'>
             <source src={backgroundVideo} type='video/mp4'/>
         </video>
