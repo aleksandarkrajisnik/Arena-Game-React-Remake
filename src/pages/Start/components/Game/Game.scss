@@ -14,7 +14,20 @@ body {
 .tic-tac-toe {
     width: fit-content;
     margin: 40px auto;
+    margin-top: 0;
     text-align: center;
+   // position: relative;
+
+    h2{
+        font-size: 22px;
+        font-family: 'CamptonMedium', sans-serif;
+        margin-bottom: 50px;
+        margin-top: 0px;
+        span{
+            color: $arenaLightBlue;
+            font-size: 24px;
+        }
+    }
 }
 .tic-tac-toe h1 {
     color: #eee;
@@ -71,18 +84,6 @@ body {
     border-color: #222;
 }
 
-// .turn::after {
-//     position: absolute;
-//     content: "";
-//     width: 50%;
-//     height: 100%;
-//     top: 0;
-//     background: yellow;
-//     border-radius: 9px;
-//     z-index: -1;
-//     transition: 0.2s;
-// }
-
 .turn.left::after {
     left: 0;
 }
@@ -107,6 +108,15 @@ body {
     display: grid;
     place-items: center;
     background-color: rgba(0, 0, 0, 0.7);
+
+    button{
+        font-family: 'CamptonMedium', sans-serif;
+
+        &:hover{
+            background-color: $arenaLightBlue;
+            color:white;
+        }
+    }
 }
 .winner .text {
     background: #111;
@@ -135,3 +145,87 @@ body {
     display: flex;
     gap: 15px;
 }
+
+.gift{
+    transition: 0.2s;
+    width: 200px;
+
+    &:hover{
+        width: 250px;
+        animation: shake 0.5s infinite;
+        cursor: pointer;
+    }
+}
+
+.tryAgain{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .replayGame{
+        font-size: 70px;
+        transition: 0.3s;
+        cursor: pointer;
+        border-radius: 50%;
+        padding:10px;
+
+        &:hover{
+            background-color: $arenaLightBlue !important;
+            transform: rotate(-30deg);
+        }
+    }
+
+    h1{
+        font-family: 'CamptonBold', sans-serif;
+        font-size: 2.5em;
+        color: $arenaLightBlue;
+        margin-top: 15px;
+    }
+
+}
+
+.noAttempts{
+    h3{
+        font-family: 'CamptonBold', sans-serif;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .facebook{
+        cursor: pointer;
+        font-size: 40px;
+        margin-right: 5px;
+
+        &:hover{
+            path{
+                color: $arenaLightBlue;
+            } 
+        }
+    }
+    .instagram{
+        cursor: pointer;
+        margin-left: 5px;
+        font-size: 33px;
+        margin-bottom: 3px;
+
+        &:hover{
+            path{
+                color: $arenaLightBlue;
+            } 
+        }
+    }
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }

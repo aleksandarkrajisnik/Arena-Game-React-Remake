@@ -4,13 +4,19 @@ import Button from "./components/Button";
 import Square from "./components/Square";
 import './Game.scss'
 import ArenaLogo from '../../../../assets/img/ArenaCloudLogo.svg'
+import Gift from '../../../../assets/img/gift.png'
+import ConfettiExplosion from "react-confetti-explosion";
+import {MdOutlineReplay} from 'react-icons/md'
+import {RiFacebookBoxFill} from 'react-icons/ri'
+import {BsInstagram} from 'react-icons/bs'
 
-const Game = ({incrementStep, userBall}) => {
+const Game = ({handleNext, userBall}) => {
 
     const [squares, setSquares] = useState(Array(9).fill(""));
     const [turn, setTurn] = useState("x");
     const [winner, setWinner] = useState(null);
     const [blockClick, setBlockClick] = useState(false);
+    const [attemptsLeft, setAttemptsLeft] = useState(3)
 
     const availableSquares = useMemo(() => {
         const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), []);
@@ -83,8 +89,12 @@ const Game = ({incrementStep, userBall}) => {
         const W = checkWinner();
         if (W) {
             setWinner(W);
+            if (W === 'o'){
+                setAttemptsLeft(prevAttempts => prevAttempts - 1)
+            }
         } else if (checkEndTheGame()) {
             setWinner("x | o");
+            setAttemptsLeft(prevAttempts => prevAttempts - 1)
         }
     }, [squares])
 
@@ -96,7 +106,9 @@ const Game = ({incrementStep, userBall}) => {
     }, [turn])
 
     return (
-        <div className="tic-tac-toe">
+
+        <>
+            <h2>Preostalo pokusaja: <span>{attemptsLeft}</span></h2>
             <div className="game">
                 {Array.from("012345678").map((ind) => (
                     <Square
@@ -143,8 +155,11 @@ const Game = ({incrementStep, userBall}) => {
                                     },
                                 }}
                             >
-                                {winner === "x | o" || winner === 'o' ? "Niste uspeli da pobedite računar 😢." : 'Čestitamo 😁! Osvojili ste nagradu!'}
+                                {winner === 'x' && 'Čestitamo 😁! Osvojili ste nagradu!'}
+                                {winner === "x | o" || winner === 'o' && attemptsLeft > 0 && "Niste uspeli da pobedite računar 😢."}
+                                {attemptsLeft < 0 && 'Nažalost, nemate više pokušaja 😢.'}
                             </motion.h2>
+                            
                             <motion.div
                                 initial={{ scale: 0 }}
                                 animate={{
@@ -156,16 +171,31 @@ const Game = ({incrementStep, userBall}) => {
                                 }}
                                 className="win"
                             >
+                                {winner === 'x' && 
                                 <img
-                                    className='logo'
-                                    src={ArenaLogo}
-                                    style={{ width: 170 }}
-                                    alt="website logo"
-                                />
-                                {/* {winner === 'x | o' && <>
-                                        <Square clsName={`x ${userBall === 'basketball' ? 'basketball' : 'football'}`} />
-                                        <Square clsName={`o ${userBall === 'basketball' ? 'football' : 'basketball'}`} />
-                                    </>} */}
+                                    className='gift'
+                                    src={Gift}
+                                    alt="Gift"
+                                    onClick={handleNext}
+                                /> }
+
+                                {winner !== 'x' && attemptsLeft > 0 && 
+                                    <div className="tryAgain">
+                                        <MdOutlineReplay
+                                            onClick={resetGame}
+                                            className='replayGame'
+                                        />
+                                        <h1>Pokušajte ponovo</h1>
+                                    </div>
+                                }
+                                {attemptsLeft < 0 &&
+                                    <div className="noAttempts">
+                                        <h3>Posjetite nas na društvenim mrežama:</h3>
+                                        <a href="https://www.facebook.com/arenacloudtv"><RiFacebookBoxFill className="facebook"/></a>
+                                        <a href="https://www.instagram.com/arena.cloud/"><BsInstagram className="instagram"/></a>
+                                    </div>
+                                }
+                                
                             </motion.div>
                             <motion.div
                                 initial={{ scale: 0 }}
@@ -174,15 +204,12 @@ const Game = ({incrementStep, userBall}) => {
                                     transition: { delay: 1.5, duration: 0.3 },
                                 }}
                             >
-                                <button onClick={() => resetGame()}>
-                                    {winner === 'x | o' || winner === 'o' ? 'Pokušaj ponovo' : "Preuzmi nagradu"}
-                                </button>
                             </motion.div>
                         </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </>
     );
 }
 

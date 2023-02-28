@@ -15,6 +15,7 @@ const Login = () => {
   const [showForm, setShowForm] = useState(true);
   const [showSelection, setShowSelection] = useState(false);
   const [showGame, setShowGame] = useState(false);
+  const [showEndScreen, setShowEndScreen] = useState(false);
 
   const ANIMATION_DURATION = 0.3;
 
@@ -35,7 +36,8 @@ const Login = () => {
             </div>
             <AnimatePresence>
               {showForm && 
-                <motion.div
+                <motion.form
+                  method='GET'
                   className='loginForm'
                   key={"loginForm"}
                   initial={{ opacity: 0, }}
@@ -47,7 +49,7 @@ const Login = () => {
                         setTimeout(() => {setShowSelection(true)}, ANIMATION_DURATION * 1000)
                       }} 
                     />
-                </motion.div>
+                </motion.form>
               }
               {showSelection && 
                 <motion.div 
@@ -66,7 +68,17 @@ const Login = () => {
                   />
                 </motion.div>
               }
-              {showGame && <Game incrementStep={console.log(1)} userBall={userBall} />}
+              {showGame && 
+                <motion.div className="tic-tac-toe">
+                  <Game 
+                    handleNext={() => {
+                      setShowGame(false);
+                      setTimeout(() => {setShowEndScreen(true)}, ANIMATION_DURATION * 1000)
+                  }} 
+                  userBall={userBall} 
+                />
+              </motion.div>
+               }
             </AnimatePresence>
             
         </div>

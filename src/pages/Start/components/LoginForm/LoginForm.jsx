@@ -82,7 +82,7 @@ const LoginForm = ({handleNext}) => {
               <label htmlFor="termsOfService">Slažem se sa <a>uslovima korišćenja</a> i punoljetan sam.</label>
             </div>
             {errors.termsOfService && <h5 className='errorMessage'>{errors.termsOfService.message}</h5>}
-            <button onClick={handleNext} className='startButton'>Start</button>
+            <button onClick={handleSubmit(saveDataAndNavigate)} className='startButton'>Start</button>
     </>
   )
 }
