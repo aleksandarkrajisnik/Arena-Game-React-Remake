@@ -151,7 +151,6 @@ body {
     width: 200px;
 
     &:hover{
-        width: 250px;
         animation: shake 0.5s infinite;
         cursor: pointer;
     }
@@ -195,7 +194,10 @@ body {
         cursor: pointer;
         font-size: 40px;
         margin-right: 5px;
-
+        transition: 0.3s;
+        path{
+            transition: 0.2s;
+        }
         &:hover{
             path{
                 color: $arenaLightBlue;
@@ -207,6 +209,9 @@ body {
         margin-left: 5px;
         font-size: 33px;
         margin-bottom: 3px;
+        path{
+            transition: 0.2s;
+        }
 
         &:hover{
             path{

@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm/LoginForm';
 import Selection from './components/Selection/Selection';
 import ArenaLogo from '../../assets/img/ArenaCloudLogo.svg'
 import Game from './components/Game/Game';
+import EndScreen from './components/EndScreen/EndScreen';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Login = () => {
@@ -69,7 +70,10 @@ const Login = () => {
                 </motion.div>
               }
               {showGame && 
-                <motion.div className="tic-tac-toe">
+                <motion.div 
+                  className="tic-tac-toe"
+                  exit={{ opacity: 0 }}  
+                >
                   <Game 
                     handleNext={() => {
                       setShowGame(false);
@@ -79,6 +83,15 @@ const Login = () => {
                 />
               </motion.div>
                }
+               {showEndScreen && 
+                  <motion.div 
+                    className='endScreen'
+                    initial={{ opacity: 0, }}
+                    animate={{ opacity: 1, transition: { duration: ANIMATION_DURATION } }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <EndScreen/>
+                  </motion.div>}
             </AnimatePresence>
             
         </div>
